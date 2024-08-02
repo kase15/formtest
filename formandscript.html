@@ -5,7 +5,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>多段階登録フォーム</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ここにCSSを記述 */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .step_form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form_ttl {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form_ttl .large {
+            font-size: 24px;
+            font-weight: bold;
+            display: block;
+        }
+        .form_ttl .small {
+            font-size: 14px;
+            color: #666;
+        }
+        .number_position {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 10px;
+        }
+        .number.active {
+            background-color: #007bff;
+        }
+        dl {
+            margin-bottom: 20px;
+        }
+        dt {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        dd {
+            margin-left: 0;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .radio_input_wrap {
+            display: flex;
+        }
+        .radio_input {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .radio_input.check {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .red {
+            color: #ff0000;
+        }
+        .more,
+        .submit {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        .back_step {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        @media (max-width: 768px) {
+            .stepform-half {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="stepform" class="step_form">
@@ -235,3 +347,4 @@
     });
     </script>
 </body>
+</html>
