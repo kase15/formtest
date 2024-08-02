@@ -345,6 +345,13 @@
             return true;
         }
     });
+     // iframeの高さ調整用スクリプト
+    function sendHeight() {
+            var height = document.body.scrollHeight;
+            window.parent.postMessage({type: 'setHeight', height: height}, '*');
+        }
+        window.onload = sendHeight;
+        window.onresize = sendHeight;
     </script>
 </body>
 </html>
