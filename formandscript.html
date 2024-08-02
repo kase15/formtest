@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多段階登録フォーム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="stepform" class="step_form">
+        <form id="step_form1" method="post" name="step_form" action="https://go.cuolega.co.jp/l/995512/2022-10-05/k5c" class="form">
+            <input type="hidden" name="oid" value="00D5i000007D96l">
+            <input type="hidden" name="retURL" value="https://foods-labo.info/thanks/thanks_kanto/">
+            <input type="hidden" id="00N5i00000INJMr" name="00N5i00000INJMr" value="/lp/">
+            <input type="hidden" id="00N5i00000INmNo" name="00N5i00000INmNo" value="関東">
+            <input type="hidden" id="00N5i00000INmir" name="00N5i00000INmir" value="">
+            <input type="hidden" id="00N5i00000FudHw" name="00N5i00000FudHw" value="">
+            <input type="hidden" id="00N5i00000FudHy" name="00N5i00000FudHy" value="">
+            <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
+
+            <div class="number_positionBlk">
+                <div class="number_positionTxt">
+                    <p>簡単<br>2ステップ</p>
+                </div>
+                <p class="form_ttl">
+                    <span class="large">無料エントリー</span><span class="small">ENTRY</span>
+                </p>
+            </div>
+
+            <div class="number_positionBlk02">
+                <div class="number_position">
+                    <div class="number active"></div>
+                    <div class="number number_step2"></div>
+                </div>
+                <p>
+                    一般公開している企業から<br>
+                    <span class="boredr_bottom">非公開求人</span>まで幅広くご紹介いたします！
+                </p>
+            </div>
+
+            <div class="oh">
+                <div class="step_wrap">
+                    <div class="step step1">
+                        <dl>
+                            <dt>お住まい<span class="red">必須</span></dt>
+                            <dd>
+                                <select id="00N5i00000INIB9" name="00N5i00000INIB9" required>
+                                    <option value="" disabled selected style="display: none">都道府県</option>
+                                    <option value="東京23区">東京23区</option>
+                                    <option value="東京都内">東京都内</option>
+                                    <option value="神奈川県">神奈川県</option>
+                                    <option value="千葉県">千葉県</option>
+                                    <option value="埼玉県">埼玉県</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>就業状況<span class="red">必須</span></dt>
+                            <dd>
+                                <div class="radio_input_wrap">
+                                    <div class="radio_input check">在職中</div>
+                                    <div class="radio_input">離職中</div>
+                                </div>
+                                <div class="dn">
+                                    <input type="radio" id="00N5i00000INHtf_1" name="00N5i00000INHtf" value="就業中" checked>
+                                    <input type="radio" id="00N5i00000INHtf_2" name="00N5i00000INHtf" value="離職中">
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>業界経験<span class="red">必須</span></dt>
+                            <dd>
+                                <select id="00N5i00000INHtk" name="00N5i00000INHtk" required>
+                                    <option value="" disabled selected style="display: none">業界経験を選択してください</option>
+                                    <option value="あり">あり</option>
+                                    <option value="なし">なし</option>
+                                    <option value="１年">１年</option>
+                                    <option value="２年">２年</option>
+                                    <option value="３年">３年</option>
+                                    <option value="４年">４年</option>
+                                    <option value="５年">５年</option>
+                                    <option value="６年">６年</option>
+                                    <option value="７年">７年</option>
+                                    <option value="８年">８年</option>
+                                    <option value="９年">９年</option>
+                                    <option value="１０年以上">１０年以上</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl class="sbbtn">
+                            <dd>
+                                <a href="javascript:void(0);" class="more next-step"><span>簡単2STEP</span>次へ</a>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="step step2" style="display: none;">
+                        <div id="name" class="step-name">
+                            <dl class="stepform-half">
+                                <dt>氏名(姓)<span class="red">必須</span></dt>
+                                <dd>
+                                    <input type="text" id="last_name" name="last_name" placeholder="山田" required>
+                                </dd>
+                            </dl>
+                            <dl class="stepform-half">
+                                <dt>氏名(名)<span class="red">必須</span></dt>
+                                <dd>
+                                    <input type="text" id="first_name" name="first_name" placeholder="太郎" required>
+                                </dd>
+                            </dl>
+                        </div>
+                        <dl>
+                            <dt>年齢<span class="red">必須</span></dt>
+                            <dd>
+                                <input type="tel" id="00N5i00000INHsm" name="00N5i00000INHsm" placeholder="20" required>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>電話番号<span class="red">必須</span></dt>
+                            <dd class="tel-validation">
+                                <input type="tel" minlength="10" maxlength="11" id="mobile" name="mobile" placeholder="0900000000" required>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <span class="email">メール<br class="sp">アドレス</span><span class="red">必須</span>
+                            </dt>
+                            <dd>
+                                <input type="email" id="email" name="email" placeholder="example@example.com" pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$" required>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>LINEでのやり取りを希望</dt>
+                            <dd>
+                                <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINEIDを入力してください">
+                            </dd>
+                        </dl>
+                        <dl class="sbm">
+                            <dd>
+                                <div class="btn-container">
+                                    <a href="javascript:void(0);" class="back_step">戻る</a>
+                                    <input type="submit" class="submit" value="無料登録する！">
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const step1 = document.querySelector('.step1');
+        const step2 = document.querySelector('.step2');
+        const nextStep = document.querySelector('.next-step');
+        const backStep = document.querySelector('.back_step');
+        const submitButton = document.querySelector('.submit');
+        const form = document.getElementById('step_form1');
+
+        // Step 1 から Step 2 へ
+        nextStep.addEventListener('click', function() {
+            if (validateStep1()) {
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                document.querySelector('.number_step2').classList.add('active');
+            }
+        });
+
+        // Step 2 から Step 1 へ戻る
+        backStep.addEventListener('click', function() {
+            step2.style.display = 'none';
+            step1.style.display = 'block';
+            document.querySelector('.number_step2').classList.remove('active');
+        });
+
+        // ラジオボタンの挙動
+        const radioInputs = document.querySelectorAll('.radio_input');
+        radioInputs.forEach((input, index) => {
+            input.addEventListener('click', function() {
+                radioInputs.forEach(ri => ri.classList.remove('check'));
+                this.classList.add('check');
+                document.querySelectorAll('input[name="00N5i00000INHtf"]')[index].checked = true;
+            });
+        });
+
+        // フォーム送信
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateStep2()) {
+                console.log('フォーム送信成功');
+                alert('フォームが送信されました！');
+                // 実際の送信処理はここに追加します
+                // form.submit();
+            }
+        });
+
+        // Step 1 のバリデーション
+        function validateStep1() {
+            const prefecture = document.getElementById('00N5i00000INIB9').value;
+            const experience = document.getElementById('00N5i00000INHtk').value;
+            if (prefecture === '' || experience === '') {
+                alert('全ての必須項目を入力してください。');
+                return false;
+            }
+            return true;
+        }
+
+        // Step 2 のバリデーション
+        function validateStep2() {
+            const requiredFields = ['last_name', 'first_name', '00N5i00000INHsm', 'mobile', 'email'];
+            for (let field of requiredFields) {
+                const value = document.getElementById(field).value.trim();
+                if (value === '') {
+                    alert('全ての必須項目を入力してください。');
+                    return false;
+                }
+            }
+
+            // 電話番号のバリデーション
+            const phoneNumber = document.getElementById('mobile').value;
+            if (!/^[0-9]{10,11}$/.test(phoneNumber)) {
+                alert('有効な電話番号を入力してください（10桁または11桁の数字）。');
+                return false;
+            }
+
+            // メールアドレスのバリデーション
+            const email = document.getElementById('email').value;
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('有効なメールアドレスを入力してください。');
+                return false;
+            }
+
+            return true;
+        }
+    });
+    </script>
+</body>
