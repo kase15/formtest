@@ -21,6 +21,8 @@
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 500px;
         }
         .step-indicator {
             width: 30px;
@@ -58,19 +60,20 @@
         .next-btn:hover {
             background: linear-gradient(to right, #ff5722, #ff9800);
         }
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .step-content {
+            transition: all 0.5s ease;
+            width: 100%;
         }
-        @keyframes slideOutLeft {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(-100%); opacity: 0; }
-        }
-        .slide-in-right {
-            animation: slideInRight 1.0s forwards;
+        .step-content.hidden {
+            display: none;
         }
         .slide-out-left {
-            animation: slideOutLeft 1.0s forwards;
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .slide-in-right {
+            transform: translateX(100%);
+            opacity: 0;
         }
     </style>
 </head>
@@ -87,11 +90,11 @@
             <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
 
             <div class="text-center mb-8 bg-blue-700 w-full">
-                <div class="inline-block  text-white  px-4 py-2 rounded-lg">
-                    <p class="text-sm font-medium ">簡単2ステップ</p>
+                <div class="inline-block text-white px-4 py-2 rounded-lg">
+                    <p class="text-sm font-medium">簡単2ステップ</p>
                 </div>
                 <h2 class="text-3xl font-bold mt-4 text-white">- 完全無料登録 -</h2>
-                <p class="text-gray-600">ENTRY</p>
+                <p class="text-gray-300">ENTRY</p>
             </div>
 
             <div class="flex justify-center space-x-4 mb-8">
@@ -107,7 +110,7 @@
             <div id="step1" class="step-content">
                 <div class="mb-6">
                     <label for="00N5i00000INIB9" class="block text-m font-bold mb-2">お住まい<span class="text-red-500 font-bold ml-1">必須</span></label>
-                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select w-full p-3  border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                         <option value="" disabled selected>都道府県</option>
                         <option value="東京23区">東京23区</option>
                         <option value="東京都内">東京都内</option>
@@ -117,7 +120,7 @@
                     </select>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-m  font-bold mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
+                    <label class="block text-m font-bold mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
                     <div class="flex space-x-4">
                         <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color active" data-value="就業中">在職中</button>
                         <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color" data-value="離職中">離職中</button>
@@ -142,7 +145,7 @@
                         <option value="１０年以上">１０年以上</option>
                     </select>
                 </div>
-                <div class="text-center mt-8 ">
+                <div class="text-center mt-8">
                     <button type="button" id="nextStep" class="bg-gradient-to-r from-orange-400 to-orange-500 flex w-full items-center justify-between rounded-full px-0 py-3 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
                         <span class="bg-white text-green-500 py-2 px-4 rounded-full mx-2">簡単2STEP</span>
                         <span class="text-white text-l font-bold pr-4">次へ</span>
@@ -178,11 +181,11 @@
                     <label for="00N5i00000INHsr" class="block text-m font-bold mb-2">LINEでのやり取りを希望（任意）</label>
                     <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINE IDを入力してください" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
-                <div class="flex justify-between mt-8 space-x-3 ">
+                <div class="flex justify-between mt-8 space-x-3">
                     <button type="button" id="prevStep" class="px-8 py-3 m-3 bg-green-400 text-white font-bold rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
                         戻る
                     </button>
-                    <button type="submit" class="next-btn px-8 py-3 px-4 w-full  rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                    <button type="submit" class="next-btn px-8 py-3 px-4 w-full rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
                         無料エントリー！
                     </button>
                 </div>
@@ -191,143 +194,147 @@
     </div>
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('entryForm');
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const nextStepBtn = document.getElementById('nextStep');
-    const prevStepBtn = document.getElementById('prevStep');
-    const employmentStatusBtns = document.querySelectorAll('.employment-status-btn');
-    const employmentStatusInput = document.getElementById('00N5i00000INHtf');
-    const stepIndicators = document.querySelectorAll('.step-indicator');
-
-    function showStep(stepToShow, stepToHide, direction) {
-        stepToHide.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
-        stepToHide.classList.add('hidden');
-        stepToShow.classList.remove('hidden');
-        stepToShow.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left');
-        
-        // アニメーション終了後にクラスを削除
-        setTimeout(() => {
-            stepToHide.classList.remove('slide-out-left', 'slide-out-right');
-            stepToShow.classList.remove('slide-in-right', 'slide-in-left');
-        }, 500); // アニメーションの持続時間に合わせて調整
-    }
-
-    function updateStepIndicator(activeStep) {
-        stepIndicators.forEach((indicator, index) => {
-            if (index + 1 === activeStep) {
-                indicator.classList.add('active');
-            } else {
-                indicator.classList.remove('active');
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('entryForm');
+            const step1 = document.getElementById('step1');
+            const step2 = document.getElementById('step2');
+            const nextStepBtn = document.getElementById('nextStep');
+            const prevStepBtn = document.getElementById('prevStep');
+            const employmentStatusBtns = document.querySelectorAll('.employment-status-btn');
+            const employmentStatusInput = document.getElementById('00N5i00000INHtf');
+            const stepIndicators = document.querySelectorAll('.step-indicator');
+    
+            function showStep(stepToShow, stepToHide, direction) {
+                const slideOutClass = direction === 'next' ? 'slide-out-left' : 'slide-out-right';
+                const slideInClass = direction === 'next' ? 'slide-in-right' : 'slide-in-left';
+    
+                stepToHide.classList.add(slideOutClass);
+                stepToShow.classList.remove('hidden');
+                stepToShow.classList.add(slideInClass);
+    
+                // Force a reflow
+                stepToShow.offsetHeight;
+    
+                stepToShow.classList.remove(slideInClass);
+                
+                setTimeout(() => {
+                    stepToHide.classList.add('hidden');
+                    stepToHide.classList.remove(slideOutClass);
+                    sendHeight();
+                }, 500);
             }
-        });
-    }
-
-    nextStepBtn.addEventListener('click', function() {
-        if (validateStep1()) {
-            showStep(step2, step1, 'next');
-            updateStepIndicator(2);
-            sendHeight();
-        }
-    });
-
-    prevStepBtn.addEventListener('click', function() {
-        showStep(step1, step2, 'prev');
-        updateStepIndicator(1);
-        sendHeight();
-    });
-        employmentStatusBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                employmentStatusBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                employmentStatusInput.value = this.dataset.value;
-            });
-        });
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (validateStep2()) {
-                // フォーム送信処理
-                fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    alert('エントリーが完了しました！');
-                    form.reset();
-                    showStep(step1, step2, 'prev');
-                    updateStepIndicator(1);
-                    resetEmploymentStatus();
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    alert('エントリーの送信中にエラーが発生しました。もう一度お試しください。');
+    
+            function updateStepIndicator(activeStep) {
+                stepIndicators.forEach((indicator, index) => {
+                    if (index + 1 === activeStep) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
                 });
             }
-        });
-
-        function validateStep1() {
-            const residence = document.getElementById('00N5i00000INIB9').value;
-            const experience = document.getElementById('00N5i00000INHtk').value;
-            if (residence === '' || experience === '') {
-                alert('すべての必須項目を入力してください。');
-                return false;
-            }
-            return true;
-        }
-
-        function validateStep2() {
-            const requiredFields = ['last_name', 'first_name', '00N5i00000INHsm', 'mobile', 'email'];
-            for (let field of requiredFields) {
-                const value = document.getElementById(field).value.trim();
-                if (value === '') {
+    
+            nextStepBtn.addEventListener('click', function() {
+                if (validateStep1()) {
+                    showStep(step2, step1, 'next');
+                    updateStepIndicator(2);
+                }
+            });
+    
+            prevStepBtn.addEventListener('click', function() {
+                showStep(step1, step2, 'prev');
+                updateStepIndicator(1);
+            });
+    
+            employmentStatusBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    employmentStatusBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    employmentStatusInput.value = this.dataset.value;
+                });
+            });
+    
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateStep2()) {
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        alert('エントリーが完了しました！');
+                        form.reset();
+                        showStep(step1, step2, 'prev');
+                        updateStepIndicator(1);
+                        resetEmploymentStatus();
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                        alert('エントリーの送信中にエラーが発生しました。もう一度お試しください。');
+                    });
+                }
+            });
+    
+            function validateStep1() {
+                const residence = document.getElementById('00N5i00000INIB9').value;
+                const experience = document.getElementById('00N5i00000INHtk').value;
+                if (residence === '' || experience === '') {
                     alert('すべての必須項目を入力してください。');
                     return false;
                 }
+                return true;
             }
-
-            const phoneNumber = document.getElementById('mobile').value;
-            if (!/^[0-9]{10,11}$/.test(phoneNumber)) {
-                alert('有効な電話番号を入力してください（10桁または11桁の数字）。');
-                return false;
+    
+            function validateStep2() {
+                const requiredFields = ['last_name', 'first_name', '00N5i00000INHsm', 'mobile', 'email'];
+                for (let field of requiredFields) {
+                    const value = document.getElementById(field).value.trim();
+                    if (value === '') {
+                        alert('すべての必須項目を入力してください。');
+                        return false;
+                    }
+                }
+    
+                const phoneNumber = document.getElementById('mobile').value;
+                if (!/^[0-9]{10,11}$/.test(phoneNumber)) {
+                    alert('有効な電話番号を入力してください（10桁または11桁の数字）。');
+                    return false;
+                }
+    
+                const email = document.getElementById('email').value;
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert('有効なメールアドレスを入力してください。');
+                    return false;
+                }
+    
+                return true;
             }
-
-            const email = document.getElementById('email').value;
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                alert('有効なメールアドレスを入力してください。');
-                return false;
+    
+            function resetEmploymentStatus() {
+                employmentStatusBtns.forEach(btn => btn.classList.remove('active'));
+                employmentStatusBtns[0].classList.add('active');
+                employmentStatusInput.value = employmentStatusBtns[0].dataset.value;
             }
-
-            return true;
-        }
-
-        function resetEmploymentStatus() {
-            employmentStatusBtns.forEach(btn => btn.classList.remove('active'));
-            employmentStatusBtns[0].classList.add('active');
-            employmentStatusInput.value = employmentStatusBtns[0].dataset.value;
-        }
-        function sendHeight() {
-        var height = document.getElementById('form-container').offsetHeight;
-        window.parent.postMessage({type: 'setHeight', height: height}, '*');
-    }
-
-    window.addEventListener('load', sendHeight);
-    window.addEventListener('resize', sendHeight);
-
-    // 入力フィールドの変更を監視し、高さの変更を検知
-    const inputFields = document.querySelectorAll('input, select, textarea');
-    inputFields.forEach(field => {
-        field.addEventListener('input', sendHeight);
-    });
-
-    // アニメーション終了後に高さを再計算
-    [step1, step2].forEach(step => {
-        step.addEventListener('animationend', sendHeight);
-    });
-});
-    </script>
-</body>
-</html>
+    
+            function sendHeight() {
+                var height = document.getElementById('form-container').offsetHeight;
+                window.parent.postMessage({type: 'setHeight', height: height}, '*');
+            }
+    
+            window.addEventListener('load', sendHeight);
+            window.addEventListener('resize', sendHeight);
+    
+            const inputFields = document.querySelectorAll('input, select, textarea');
+            inputFields.forEach(field => {
+                field.addEventListener('input', sendHeight);
+            });
+    
+            [step1, step2].forEach(step => {
+                step.addEventListener('transitionend', sendHeight);
+            });
+        });
+        </script>
+    </body>
+    </html>
