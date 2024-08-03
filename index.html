@@ -8,7 +8,7 @@
     <style>
         :root {
             --primary-color: #ff9800;
-            --secondary-color: #4caf50;
+            --secondary-color: #79e536;
             --background-color: #f5f5f5;
             --text-color: #333333;
         }
@@ -86,11 +86,11 @@
             <input type="hidden" id="00N5i00000FudHy" name="00N5i00000FudHy" value="">
             <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
 
-            <div class="text-center mb-8">
-                <div class="inline-block bg-primary-color text-white px-4 py-2 rounded-lg">
-                    <p class="text-sm font-medium">簡単2ステップ</p>
+            <div class="text-center mb-8 bg-blue-700 w-full">
+                <div class="inline-block  text-white  px-4 py-2 rounded-lg">
+                    <p class="text-sm font-medium ">簡単2ステップ</p>
                 </div>
-                <h2 class="text-3xl font-bold mt-4">無料エントリー</h2>
+                <h2 class="text-3xl font-bold mt-4 text-white">- 完全無料登録 -</h2>
                 <p class="text-gray-600">ENTRY</p>
             </div>
 
@@ -101,13 +101,13 @@
 
             <p class="text-center mb-8">
                 一般公開している企業から<br>
-                <span class="border-b-2 border-primary-color">非公開求人</span>まで幅広くご紹介いたします！
+                <span class="border-b-2 text-orange-500">非公開求人</span>まで幅広くご紹介いたします！
             </p>
 
             <div id="step1" class="step-content">
                 <div class="mb-6">
-                    <label for="00N5i00000INIB9" class="block text-sm font-medium mb-2">お住まい<span class="text-red-500 ml-1">必須</span></label>
-                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <label for="00N5i00000INIB9" class="block text-m font-bold mb-2">お住まい<span class="text-red-500 font-bold ml-1">必須</span></label>
+                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select w-full p-3  border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                         <option value="" disabled selected>都道府県</option>
                         <option value="東京23区">東京23区</option>
                         <option value="東京都内">東京都内</option>
@@ -117,7 +117,7 @@
                     </select>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-sm font-medium mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
+                    <label class="block text-m  font-bold mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
                     <div class="flex space-x-4">
                         <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color active" data-value="就業中">在職中</button>
                         <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color" data-value="離職中">離職中</button>
@@ -125,7 +125,7 @@
                     <input type="hidden" id="00N5i00000INHtf" name="00N5i00000INHtf" value="就業中">
                 </div>
                 <div class="mb-6">
-                    <label for="00N5i00000INHtk" class="block text-sm font-medium mb-2">業界経験<span class="text-red-500 ml-1">必須</span></label>
+                    <label for="00N5i00000INHtk" class="block text-m font-bold mb-2">業界経験<span class="text-red-500 ml-1">必須</span></label>
                     <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                         <option value="" disabled selected>業界経験を選択してください</option>
                         <option value="あり">あり</option>
@@ -142,9 +142,11 @@
                         <option value="１０年以上">１０年以上</option>
                     </select>
                 </div>
-                <div class="text-center mt-8">
-                    <button type="button" id="nextStep" class="next-btn px-8 py-3 rounded-full text-white text-lg font-semibold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
-                        簡単2STEP 次へ →
+                <div class="text-center mt-8 ">
+                    <button type="button" id="nextStep" class="bg-gradient-to-r from-orange-400 to-orange-500 flex w-full items-center justify-between rounded-full px-0 py-3 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                        <span class="bg-white text-green-500 py-2 px-4 rounded-full mx-2">簡単2STEP</span>
+                        <span class="text-white text-l font-bold pr-4">次へ</span>
+                        <span class="text-white text-l font-bold pr-4">＞</span>
                     </button>
                 </div>
             </div>
@@ -152,36 +154,36 @@
             <div id="step2" class="step-content hidden">
                 <div class="grid grid-cols-2 gap-4 mb-6">
                     <div>
-                        <label for="last_name" class="block text-sm font-medium mb-2">氏名(姓)<span class="text-red-500 ml-1">必須</span></label>
+                        <label for="last_name" class="block text-m font-bold mb-2">氏名(姓)<span class="text-red-500 ml-1">必須</span></label>
                         <input type="text" id="last_name" name="last_name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                     </div>
                     <div>
-                        <label for="first_name" class="block text-sm font-medium mb-2">氏名(名)<span class="text-red-500 ml-1">必須</span></label>
+                        <label for="first_name" class="block text-m font-bold mb-2">氏名(名)<span class="text-red-500 ml-1">必須</span></label>
                         <input type="text" id="first_name" name="first_name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                     </div>
                 </div>
                 <div class="mb-6">
-                    <label for="00N5i00000INHsm" class="block text-sm font-medium mb-2">年齢<span class="text-red-500 ml-1">必須</span></label>
+                    <label for="00N5i00000INHsm" class="block text-m font-bold mb-2">年齢<span class="text-red-500 ml-1">必須</span></label>
                     <input type="number" id="00N5i00000INHsm" name="00N5i00000INHsm" required min="18" max="100" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="mb-6">
-                    <label for="mobile" class="block text-sm font-medium mb-2">電話番号<span class="text-red-500 ml-1">必須</span></label>
+                    <label for="mobile" class="block text-m font-bold mb-2">電話番号<span class="text-red-500 ml-1">必須</span></label>
                     <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="mb-6">
-                    <label for="email" class="block text-sm font-medium mb-2">メールアドレス<span class="text-red-500 ml-1">必須</span></label>
+                    <label for="email" class="block text-m font-bold mb-2">メールアドレス<span class="text-red-500 ml-1">必須</span></label>
                     <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="mb-6">
-                    <label for="00N5i00000INHsr" class="block text-sm font-medium mb-2">LINEでのやり取りを希望（任意）</label>
+                    <label for="00N5i00000INHsr" class="block text-m font-bold mb-2">LINEでのやり取りを希望（任意）</label>
                     <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINE IDを入力してください" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
-                <div class="flex justify-between mt-8">
-                    <button type="button" id="prevStep" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+                <div class="flex justify-between mt-8 space-x-3 ">
+                    <button type="button" id="prevStep" class="px-8 py-3 m-3 bg-green-400 text-white font-bold rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
                         戻る
                     </button>
-                    <button type="submit" class="next-btn px-8 py-3 rounded-full text-white text-lg font-semibold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
-                        無料登録する！
+                    <button type="submit" class="next-btn px-8 py-3 px-4 w-full  rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                        無料エントリー！
                     </button>
                 </div>
             </div>
