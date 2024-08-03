@@ -7,9 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --primary-color: #ffbf00;
-            --secondary-color: #8d6531;
-            --background-color: #f3f5ec;
+            --primary-color: #ff9800;
+            --secondary-color: #4caf50;
+            --background-color: #f5f5f5;
             --text-color: #333333;
         }
         body {
@@ -19,35 +19,58 @@
         }
         .form-container {
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--text-color);
-        }
-        .btn-primary:hover {
-            background-color: #e6ac00;
-        }
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            color: #ffffff;
-        }
-        .btn-secondary:hover {
-            background-color: #7a582b;
-        }
         .step-indicator {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
             transition: all 0.3s ease;
         }
         .step-indicator.active {
             background-color: var(--primary-color);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0aec0'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1.5em 1.5em;
         }
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
+        .employment-status-btn {
+            transition: all 0.3s ease;
+        }
+        .employment-status-btn.active {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            border-color: var(--secondary-color);
+        }
+        .next-btn {
+            background: linear-gradient(to right, #ff9800, #ff5722);
+        }
+        .next-btn:hover {
+            background: linear-gradient(to right, #ff5722, #ff9800);
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        .slide-in-right {
+            animation: slideInRight 1.0s forwards;
+        }
+        .slide-out-left {
+            animation: slideOutLeft 1.0s forwards;
         }
     </style>
 </head>
@@ -64,14 +87,16 @@
             <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
 
             <div class="text-center mb-8">
-                <p class="text-sm font-medium">簡単2ステップ</p>
-                <h2 class="text-3xl font-bold mt-2">無料エントリー</h2>
+                <div class="inline-block bg-primary-color text-white px-4 py-2 rounded-lg">
+                    <p class="text-sm font-medium">簡単2ステップ</p>
+                </div>
+                <h2 class="text-3xl font-bold mt-4">無料エントリー</h2>
                 <p class="text-gray-600">ENTRY</p>
             </div>
 
             <div class="flex justify-center space-x-4 mb-8">
-                <div class="step-indicator w-8 h-8 rounded-full bg-gray-300 active"></div>
-                <div class="step-indicator w-8 h-8 rounded-full bg-gray-300"></div>
+                <div class="step-indicator active">1</div>
+                <div class="step-indicator">2</div>
             </div>
 
             <p class="text-center mb-8">
@@ -79,10 +104,10 @@
                 <span class="border-b-2 border-primary-color">非公開求人</span>まで幅広くご紹介いたします！
             </p>
 
-            <div id="step1" class="fade-in">
+            <div id="step1" class="step-content">
                 <div class="mb-6">
                     <label for="00N5i00000INIB9" class="block text-sm font-medium mb-2">お住まい<span class="text-red-500 ml-1">必須</span></label>
-                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                         <option value="" disabled selected>都道府県</option>
                         <option value="東京23区">東京23区</option>
                         <option value="東京都内">東京都内</option>
@@ -94,14 +119,14 @@
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
                     <div class="flex space-x-4">
-                        <button type="button" class="employment-status flex-1 py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color active" data-value="就業中">在職中</button>
-                        <button type="button" class="employment-status flex-1 py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color" data-value="離職中">離職中</button>
+                        <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color active" data-value="就業中">在職中</button>
+                        <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color" data-value="離職中">離職中</button>
                     </div>
                     <input type="hidden" id="00N5i00000INHtf" name="00N5i00000INHtf" value="就業中">
                 </div>
                 <div class="mb-6">
                     <label for="00N5i00000INHtk" class="block text-sm font-medium mb-2">業界経験<span class="text-red-500 ml-1">必須</span></label>
-                    <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                         <option value="" disabled selected>業界経験を選択してください</option>
                         <option value="あり">あり</option>
                         <option value="なし">なし</option>
@@ -118,44 +143,44 @@
                     </select>
                 </div>
                 <div class="text-center mt-8">
-                    <button type="button" id="nextStep" class="btn-primary px-6 py-3 rounded-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
-                        次へ
+                    <button type="button" id="nextStep" class="next-btn px-8 py-3 rounded-full text-white text-lg font-semibold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                        簡単2STEP 次へ →
                     </button>
                 </div>
             </div>
 
-            <div id="step2" class="hidden fade-in">
+            <div id="step2" class="step-content hidden">
                 <div class="grid grid-cols-2 gap-4 mb-6">
                     <div>
                         <label for="last_name" class="block text-sm font-medium mb-2">氏名(姓)<span class="text-red-500 ml-1">必須</span></label>
-                        <input type="text" id="last_name" name="last_name" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                        <input type="text" id="last_name" name="last_name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                     </div>
                     <div>
                         <label for="first_name" class="block text-sm font-medium mb-2">氏名(名)<span class="text-red-500 ml-1">必須</span></label>
-                        <input type="text" id="first_name" name="first_name" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                        <input type="text" id="first_name" name="first_name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                     </div>
                 </div>
                 <div class="mb-6">
                     <label for="00N5i00000INHsm" class="block text-sm font-medium mb-2">年齢<span class="text-red-500 ml-1">必須</span></label>
-                    <input type="number" id="00N5i00000INHsm" name="00N5i00000INHsm" required min="18" max="100" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <input type="number" id="00N5i00000INHsm" name="00N5i00000INHsm" required min="18" max="100" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="mb-6">
                     <label for="mobile" class="block text-sm font-medium mb-2">電話番号<span class="text-red-500 ml-1">必須</span></label>
-                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="mb-6">
                     <label for="email" class="block text-sm font-medium mb-2">メールアドレス<span class="text-red-500 ml-1">必須</span></label>
-                    <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="mb-6">
                     <label for="00N5i00000INHsr" class="block text-sm font-medium mb-2">LINEでのやり取りを希望（任意）</label>
-                    <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINE IDを入力してください" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                    <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINE IDを入力してください" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                 </div>
                 <div class="flex justify-between mt-8">
-                    <button type="button" id="prevStep" class="btn-secondary px-6 py-3 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-secondary-color focus:ring-opacity-50">
+                    <button type="button" id="prevStep" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
                         戻る
                     </button>
-                    <button type="submit" class="btn-primary px-6 py-3 rounded-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                    <button type="submit" class="next-btn px-8 py-3 rounded-full text-white text-lg font-semibold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
                         無料登録する！
                     </button>
                 </div>
@@ -164,49 +189,56 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('entryForm');
-        const step1 = document.getElementById('step1');
-        const step2 = document.getElementById('step2');
-        const nextStepBtn = document.getElementById('nextStep');
-        const prevStepBtn = document.getElementById('prevStep');
-        const employmentStatusBtns = document.querySelectorAll('.employment-status');
-        const employmentStatusInput = document.getElementById('00N5i00000INHtf');
-        const stepIndicators = document.querySelectorAll('.step-indicator');
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('entryForm');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const nextStepBtn = document.getElementById('nextStep');
+    const prevStepBtn = document.getElementById('prevStep');
+    const employmentStatusBtns = document.querySelectorAll('.employment-status-btn');
+    const employmentStatusInput = document.getElementById('00N5i00000INHtf');
+    const stepIndicators = document.querySelectorAll('.step-indicator');
 
-        function showStep(stepToShow, stepToHide) {
-            stepToHide.classList.add('hidden');
-            stepToShow.classList.remove('hidden');
-        }
+    function showStep(stepToShow, stepToHide, direction) {
+        stepToHide.classList.add(direction === 'next' ? 'slide-out-left' : 'slide-out-right');
+        stepToHide.classList.add('hidden');
+        stepToShow.classList.remove('hidden');
+        stepToShow.classList.add(direction === 'next' ? 'slide-in-right' : 'slide-in-left');
+        
+        // アニメーション終了後にクラスを削除
+        setTimeout(() => {
+            stepToHide.classList.remove('slide-out-left', 'slide-out-right');
+            stepToShow.classList.remove('slide-in-right', 'slide-in-left');
+        }, 500); // アニメーションの持続時間に合わせて調整
+    }
 
-        function updateStepIndicator(activeStep) {
-            stepIndicators.forEach((indicator, index) => {
-                if (index + 1 === activeStep) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-
-        nextStepBtn.addEventListener('click', function() {
-            if (validateStep1()) {
-                showStep(step2, step1);
-                updateStepIndicator(2);
-                sendHeight();
+    function updateStepIndicator(activeStep) {
+        stepIndicators.forEach((indicator, index) => {
+            if (index + 1 === activeStep) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
             }
         });
+    }
 
-        prevStepBtn.addEventListener('click', function() {
-            showStep(step1, step2);
-            updateStepIndicator(1);
+    nextStepBtn.addEventListener('click', function() {
+        if (validateStep1()) {
+            showStep(step2, step1, 'next');
+            updateStepIndicator(2);
             sendHeight();
-        });
+        }
+    });
 
+    prevStepBtn.addEventListener('click', function() {
+        showStep(step1, step2, 'prev');
+        updateStepIndicator(1);
+        sendHeight();
+    });
         employmentStatusBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                employmentStatusBtns.forEach(b => b.classList.remove('active', 'bg-primary-color', 'text-white'));
-                this.classList.add('active', 'bg-primary-color', 'text-white');
+                employmentStatusBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
                 employmentStatusInput.value = this.dataset.value;
             });
         });
@@ -224,8 +256,9 @@
                     console.log('Success:', data);
                     alert('エントリーが完了しました！');
                     form.reset();
-                    showStep(step1, step2);
+                    showStep(step1, step2, 'prev');
                     updateStepIndicator(1);
+                    resetEmploymentStatus();
                 })
                 .catch((error) => {
                     console.error('Error:', error);
@@ -269,20 +302,30 @@
             return true;
         }
 
-        function sendHeight() {
-            var height = document.getElementById('form-container').offsetHeight;
-            window.parent.postMessage({type: 'setHeight', height: height}, '*');
+        function resetEmploymentStatus() {
+            employmentStatusBtns.forEach(btn => btn.classList.remove('active'));
+            employmentStatusBtns[0].classList.add('active');
+            employmentStatusInput.value = employmentStatusBtns[0].dataset.value;
         }
+        function sendHeight() {
+        var height = document.getElementById('form-container').offsetHeight;
+        window.parent.postMessage({type: 'setHeight', height: height}, '*');
+    }
 
-        window.addEventListener('load', sendHeight);
-        window.addEventListener('resize', sendHeight);
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
 
-        // 入力フィールドの変更を監視し、高さの変更を検知
-        const inputFields = document.querySelectorAll('input, select, textarea');
-        inputFields.forEach(field => {
-            field.addEventListener('input', sendHeight);
-        });
+    // 入力フィールドの変更を監視し、高さの変更を検知
+    const inputFields = document.querySelectorAll('input, select, textarea');
+    inputFields.forEach(field => {
+        field.addEventListener('input', sendHeight);
     });
+
+    // アニメーション終了後に高さを再計算
+    [step1, step2].forEach(step => {
+        step.addEventListener('animationend', sendHeight);
+    });
+});
     </script>
 </body>
 </html>
