@@ -3,51 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>多段階登録フォーム</title>
+    <title>無料エントリー - 職業案内</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @keyframes slideInRight {
-            from { 
-                transform: translateX(100%) scale(0.9); 
-                opacity: 0; 
-            }
-            to { 
-                transform: translateX(0) scale(1); 
-                opacity: 1; 
-            }
+        :root {
+            --primary-color: #ffbf00;
+            --secondary-color: #8d6531;
+            --background-color: #f3f5ec;
+            --text-color: #333333;
         }
-
-        @keyframes slideOutLeft {
-            from { 
-                transform: translateX(0) scale(1); 
-                opacity: 1; 
-            }
-            to { 
-                transform: translateX(-100%) scale(0.9); 
-                opacity: 0; 
-            }
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
         }
-
-        .slide-in-right {
-            animation: slideInRight 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
-        .slide-out-left {
-            animation: slideOutLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-color);
         }
-
-        .number_step2 {
-            transition: background-color 0.8s ease;
+        .btn-primary:hover {
+            background-color: #e6ac00;
         }
-
-        .hidden {
-            display: none !important;
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background-color: #7a582b;
+        }
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+        .step-indicator.active {
+            background-color: var(--primary-color);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div id="stepform" class="max-w-2xl mx-auto my-10 bg-white p-8 rounded-lg shadow-md">
-        <form id="step_form1" method="post" name="step_form" action="https://script.google.com/macros/s/AKfycbyDSkluozMp8-SYqrZUorKJpUKDro0x4bTkOkbJM8Gcrp3kkP4Ek8P9feFnTnpM6_C7/exec" class="space-y-6">
+<body class="p-4">
+    <div id="form-container" class="form-container max-w-2xl mx-auto my-10 p-8">
+        <form id="entryForm" method="post" action="https://script.google.com/macros/s/AKfycbyDSkluozMp8-SYqrZUorKJpUKDro0x4bTkOkbJM8Gcrp3kkP4Ek8P9feFnTnpM6_C7/exec" class="space-y-6">
             <input type="hidden" name="oid" value="00D5i000007D96l">
             <input type="hidden" name="retURL" value="https://foods-labo.info/thanks/thanks_kanto/">
             <input type="hidden" id="00N5i00000INJMr" name="00N5i00000INJMr" value="/lp/">
@@ -58,197 +64,202 @@
             <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
 
             <div class="text-center mb-8">
-                <p class="text-sm font-medium">簡単<br>2ステップ</p>
+                <p class="text-sm font-medium">簡単2ステップ</p>
                 <h2 class="text-3xl font-bold mt-2">無料エントリー</h2>
                 <p class="text-gray-600">ENTRY</p>
             </div>
 
             <div class="flex justify-center space-x-4 mb-8">
-                <div class="w-8 h-8 rounded-full bg-blue-500"></div>
-                <div class="w-8 h-8 rounded-full bg-gray-300 number_step2"></div>
+                <div class="step-indicator w-8 h-8 rounded-full bg-gray-300 active"></div>
+                <div class="step-indicator w-8 h-8 rounded-full bg-gray-300"></div>
             </div>
 
             <p class="text-center mb-8">
                 一般公開している企業から<br>
-                <span class="border-b-2 border-blue-500">非公開求人</span>まで幅広くご紹介いたします！
+                <span class="border-b-2 border-primary-color">非公開求人</span>まで幅広くご紹介いたします！
             </p>
 
-            <div class="relative">
-                <div class="step step1">
-                    <div class="mb-6">
-                        <label for="00N5i00000INIB9" class="block text-sm font-medium text-gray-700 mb-2">お住まい<span class="text-red-500">必須</span></label>
-                        <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                            <option value="" disabled selected>都道府県</option>
-                            <option value="東京23区">東京23区</option>
-                            <option value="東京都内">東京都内</option>
-                            <option value="神奈川県">神奈川県</option>
-                            <option value="千葉県">千葉県</option>
-                            <option value="埼玉県">埼玉県</option>
-                        </select>
+            <div id="step1" class="fade-in">
+                <div class="mb-6">
+                    <label for="00N5i00000INIB9" class="block text-sm font-medium mb-2">お住まい<span class="text-red-500 ml-1">必須</span></label>
+                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                        <option value="" disabled selected>都道府県</option>
+                        <option value="東京23区">東京23区</option>
+                        <option value="東京都内">東京都内</option>
+                        <option value="神奈川県">神奈川県</option>
+                        <option value="千葉県">千葉県</option>
+                        <option value="埼玉県">埼玉県</option>
+                    </select>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
+                    <div class="flex space-x-4">
+                        <button type="button" class="employment-status flex-1 py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color active" data-value="就業中">在職中</button>
+                        <button type="button" class="employment-status flex-1 py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color" data-value="離職中">離職中</button>
                     </div>
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">就業状況<span class="text-red-500">必須</span></label>
-                        <div class="flex">
-                            <div class="radio_input check flex-1 text-center p-3 border border-gray-300 cursor-pointer bg-blue-500 text-white">在職中</div>
-                            <div class="radio_input flex-1 text-center p-3 border border-gray-300 cursor-pointer">離職中</div>
-                        </div>
-                        <div class="hidden">
-                            <input type="radio" id="00N5i00000INHtf_1" name="00N5i00000INHtf" value="就業中" checked>
-                            <input type="radio" id="00N5i00000INHtf_2" name="00N5i00000INHtf" value="離職中">
-                        </div>
+                    <input type="hidden" id="00N5i00000INHtf" name="00N5i00000INHtf" value="就業中">
+                </div>
+                <div class="mb-6">
+                    <label for="00N5i00000INHtk" class="block text-sm font-medium mb-2">業界経験<span class="text-red-500 ml-1">必須</span></label>
+                    <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                        <option value="" disabled selected>業界経験を選択してください</option>
+                        <option value="あり">あり</option>
+                        <option value="なし">なし</option>
+                        <option value="１年">１年</option>
+                        <option value="２年">２年</option>
+                        <option value="３年">３年</option>
+                        <option value="４年">４年</option>
+                        <option value="５年">５年</option>
+                        <option value="６年">６年</option>
+                        <option value="７年">７年</option>
+                        <option value="８年">８年</option>
+                        <option value="９年">９年</option>
+                        <option value="１０年以上">１０年以上</option>
+                    </select>
+                </div>
+                <div class="text-center mt-8">
+                    <button type="button" id="nextStep" class="btn-primary px-6 py-3 rounded-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                        次へ
+                    </button>
+                </div>
+            </div>
+
+            <div id="step2" class="hidden fade-in">
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <label for="last_name" class="block text-sm font-medium mb-2">氏名(姓)<span class="text-red-500 ml-1">必須</span></label>
+                        <input type="text" id="last_name" name="last_name" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                     </div>
-                    <div class="mb-6">
-                        <label for="00N5i00000INHtk" class="block text-sm font-medium text-gray-700 mb-2">業界経験<span class="text-red-500">必須</span></label>
-                        <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                            <option value="" disabled selected>業界経験を選択してください</option>
-                            <option value="あり">あり</option>
-                            <option value="なし">なし</option>
-                            <option value="１年">１年</option>
-                            <option value="２年">２年</option>
-                            <option value="３年">３年</option>
-                            <option value="４年">４年</option>
-                            <option value="５年">５年</option>
-                            <option value="６年">６年</option>
-                            <option value="７年">７年</option>
-                            <option value="８年">８年</option>
-                            <option value="９年">９年</option>
-                            <option value="１０年以上">１０年以上</option>
-                        </select>
-                    </div>
-                    <div class="text-center">
-                        <a href="javascript:void(0);" class="next-step inline-block px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">
-                            <span>簡単2STEP</span>次へ
-                        </a>
+                    <div>
+                        <label for="first_name" class="block text-sm font-medium mb-2">氏名(名)<span class="text-red-500 ml-1">必須</span></label>
+                        <input type="text" id="first_name" name="first_name" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
                     </div>
                 </div>
-                <div class="step step2" style="display: none;">
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="last_name" class="block text-sm font-medium text-gray-700 mb-2">氏名(姓)<span class="text-red-500">必須</span></label>
-                            <input type="text" id="last_name" name="last_name" placeholder="山田" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-                        <div class="w-full md:w-1/2 px-3">
-                            <label for="first_name" class="block text-sm font-medium text-gray-700 mb-2">氏名(名)<span class="text-red-500">必須</span></label>
-                            <input type="text" id="first_name" name="first_name" placeholder="太郎" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label for="00N5i00000INHsm" class="block text-sm font-medium text-gray-700 mb-2">年齢<span class="text-red-500">必須</span></label>
-                        <input type="tel" id="00N5i00000INHsm" name="00N5i00000INHsm" placeholder="20" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="mb-6">
-                        <label for="mobile" class="block text-sm font-medium text-gray-700 mb-2">電話番号<span class="text-red-500">必須</span></label>
-                        <input type="tel" minlength="10" maxlength="11" id="mobile" name="mobile" placeholder="0900000000" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="mb-6">
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                            メール<br class="sm:hidden">アドレス<span class="text-red-500">必須</span>
-                        </label>
-                        <input type="email" id="email" name="email" placeholder="example@example.com" pattern="^[a-zA-Z0-9.!#$&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="mb-6">
-                        <label for="00N5i00000INHsr" class="block text-sm font-medium text-gray-700 mb-2">LINEでのやり取りを希望</label>
-                        <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINEIDを入力してください" class="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-                    </div>
-                    <div class="flex justify-between mt-8">
-                        <a href="javascript:void(0);" class="back_step px-6 py-3 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition duration-300">戻る</a>
-                        <input type="submit" class="submit px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 cursor-pointer" value="無料登録する！">
-                    </div>
+                <div class="mb-6">
+                    <label for="00N5i00000INHsm" class="block text-sm font-medium mb-2">年齢<span class="text-red-500 ml-1">必須</span></label>
+                    <input type="number" id="00N5i00000INHsm" name="00N5i00000INHsm" required min="18" max="100" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                </div>
+                <div class="mb-6">
+                    <label for="mobile" class="block text-sm font-medium mb-2">電話番号<span class="text-red-500 ml-1">必須</span></label>
+                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block text-sm font-medium mb-2">メールアドレス<span class="text-red-500 ml-1">必須</span></label>
+                    <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                </div>
+                <div class="mb-6">
+                    <label for="00N5i00000INHsr" class="block text-sm font-medium mb-2">LINEでのやり取りを希望（任意）</label>
+                    <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINE IDを入力してください" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                </div>
+                <div class="flex justify-between mt-8">
+                    <button type="button" id="prevStep" class="btn-secondary px-6 py-3 rounded-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-secondary-color focus:ring-opacity-50">
+                        戻る
+                    </button>
+                    <button type="submit" class="btn-primary px-6 py-3 rounded-md transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                        無料登録する！
+                    </button>
                 </div>
             </div>
         </form>
     </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const step1 = document.querySelector('.step1');
-        const step2 = document.querySelector('.step2');
-        const nextStep = document.querySelector('.next-step');
-        const backStep = document.querySelector('.back_step');
-        const submitButton = document.querySelector('.submit');
-        const form = document.getElementById('step_form1');
+        const form = document.getElementById('entryForm');
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const nextStepBtn = document.getElementById('nextStep');
+        const prevStepBtn = document.getElementById('prevStep');
+        const employmentStatusBtns = document.querySelectorAll('.employment-status');
+        const employmentStatusInput = document.getElementById('00N5i00000INHtf');
+        const stepIndicators = document.querySelectorAll('.step-indicator');
 
-        // Step 1 から Step 2 へ
-        nextStep.addEventListener('click', function() {
-        if (validateStep1()) {
-            step1.classList.add('slide-out-left');
-            setTimeout(() => {
-            step1.style.display = 'none';  // hiddenクラスの代わりに直接スタイルを設定
-            step2.style.display = 'block'; // hiddenクラスの代わりに直接スタイルを設定
-            step2.classList.add('slide-in-right');
-            document.querySelector('.number_step2').classList.add('bg-blue-500');
-            document.querySelector('.number_step2').classList.remove('bg-gray-300');
-            sendHeight();
-            }, 1000); // アニメーションの完了を待つ
+        function showStep(stepToShow, stepToHide) {
+            stepToHide.classList.add('hidden');
+            stepToShow.classList.remove('hidden');
         }
-        });
 
-        // Step 2 から Step 1 へ戻る
-        backStep.addEventListener('click', function() {
-            step2.classList.remove('slide-in-right');
-            step2.classList.add('slide-out-left');
-            setTimeout(() => {
-                step2.classList.add('hidden');
-                step1.classList.remove('hidden');
-                step1.classList.remove('slide-out-left');
-                step1.classList.add('slide-in-right');
-                document.querySelector('.number_step2').classList.remove('bg-blue-500');
-                document.querySelector('.number_step2').classList.add('bg-gray-300');
-                sendHeight();
-            }, 500);
-        });
-
-        // ラジオボタンの挙動
-        const radioInputs = document.querySelectorAll('.radio_input');
-        radioInputs.forEach((input, index) => {
-            input.addEventListener('click', function() {
-                radioInputs.forEach(ri => ri.classList.remove('check'));
-                this.classList.add('check');
-                document.querySelectorAll('input[name="00N5i00000INHtf"]')[index].checked = true;
+        function updateStepIndicator(activeStep) {
+            stepIndicators.forEach((indicator, index) => {
+                if (index + 1 === activeStep) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
             });
-        });
+        }
 
-        // フォーム送信
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (validateStep2()) {
-                form.submit();
-                console.log('フォーム送信成功');
-                alert('フォームが送信されました！');
-                // 実際の送信処理はここに追加します
-                // form.submit();
+        nextStepBtn.addEventListener('click', function() {
+            if (validateStep1()) {
+                showStep(step2, step1);
+                updateStepIndicator(2);
+                sendHeight();
             }
         });
 
-        // Step 1 のバリデーション
+        prevStepBtn.addEventListener('click', function() {
+            showStep(step1, step2);
+            updateStepIndicator(1);
+            sendHeight();
+        });
+
+        employmentStatusBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                employmentStatusBtns.forEach(b => b.classList.remove('active', 'bg-primary-color', 'text-white'));
+                this.classList.add('active', 'bg-primary-color', 'text-white');
+                employmentStatusInput.value = this.dataset.value;
+            });
+        });
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateStep2()) {
+                // フォーム送信処理
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('エントリーが完了しました！');
+                    form.reset();
+                    showStep(step1, step2);
+                    updateStepIndicator(1);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('エントリーの送信中にエラーが発生しました。もう一度お試しください。');
+                });
+            }
+        });
+
         function validateStep1() {
-            const prefecture = document.getElementById('00N5i00000INIB9').value;
+            const residence = document.getElementById('00N5i00000INIB9').value;
             const experience = document.getElementById('00N5i00000INHtk').value;
-            if (prefecture === '' || experience === '') {
-                alert('全ての必須項目を入力してください。');
+            if (residence === '' || experience === '') {
+                alert('すべての必須項目を入力してください。');
                 return false;
             }
             return true;
         }
 
-        // Step 2 のバリデーション
         function validateStep2() {
             const requiredFields = ['last_name', 'first_name', '00N5i00000INHsm', 'mobile', 'email'];
             for (let field of requiredFields) {
                 const value = document.getElementById(field).value.trim();
                 if (value === '') {
-                    alert('全ての必須項目を入力してください。');
+                    alert('すべての必須項目を入力してください。');
                     return false;
                 }
             }
 
-            // 電話番号のバリデーション
             const phoneNumber = document.getElementById('mobile').value;
             if (!/^[0-9]{10,11}$/.test(phoneNumber)) {
                 alert('有効な電話番号を入力してください（10桁または11桁の数字）。');
                 return false;
             }
 
-            // メールアドレスのバリデーション
             const email = document.getElementById('email').value;
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 alert('有効なメールアドレスを入力してください。');
@@ -257,14 +268,21 @@
 
             return true;
         }
-    });
-     // iframeの高さ調整用スクリプト
-    function sendHeight() {
-            var height = document.body.scrollHeight;
+
+        function sendHeight() {
+            var height = document.getElementById('form-container').offsetHeight;
             window.parent.postMessage({type: 'setHeight', height: height}, '*');
         }
-        window.onload = sendHeight;
-        window.onresize = sendHeight;
+
+        window.addEventListener('load', sendHeight);
+        window.addEventListener('resize', sendHeight);
+
+        // 入力フィールドの変更を監視し、高さの変更を検知
+        const inputFields = document.querySelectorAll('input, select, textarea');
+        inputFields.forEach(field => {
+            field.addEventListener('input', sendHeight);
+        });
+    });
     </script>
 </body>
 </html>
