@@ -75,6 +75,84 @@
             transform: translateX(100%);
             opacity: 0;
         }
+        .custom-gradient-select {
+            background-image: 
+            linear-gradient(to bottom, 
+                rgba(255,255,255,1) 0%,
+                rgba(240,240,240,1) 20%,
+                rgba(230,230,230,1) 50%,
+                rgba(240,240,240,1) 80%,
+                rgba(255,255,255,1) 100%
+            );
+         }
+            .employment-status-btn {
+            background-image: 
+            linear-gradient(to bottom, 
+                rgba(255,255,255,0.8) 0%,
+                rgba(240,240,240,1) 50%,
+                rgba(230,230,230,1) 100%
+            );
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+        .employment-status-btn.active {
+            background-image: 
+            linear-gradient(to bottom, 
+                rgb(150, 218, 107) 0%,
+                rgb(136, 210, 94) 100%
+            );
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        .employment-status-btn.active::before {
+            content: "✓";
+            position: absolute;
+            left: 10px;
+            color: white;
+            font-weight: bold;
+        }
+            /* ... 既存のスタイル ... */
+    
+            .custom-select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .custom-select {
+            appearance: none;
+            width: 100%;
+            padding: 10px 35px 10px 10px;
+            font-size: 16px;
+            border: 1px solid #bbb;
+            border-radius: 3px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f2f2f2 100%);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset,
+                        0 1px 3px rgba(0,0,0,0.1);
+            color: #333;
+            text-shadow: 0 1px 0 #fff;
+        }
+        .custom-select:focus {
+            outline: none;
+            border-color: #999;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .custom-select-wrapper::after {
+            content: "\25BC";
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: #666;
+            pointer-events: none;
+            font-size: 12px;
+        }
+        .select-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .required {
+            color: #ff4d4d;
+            margin-left: 5px;
+        }
     </style>
 </head>
 <body class="p-4">
@@ -91,7 +169,7 @@
 
             <div class="text-center mb-8 bg-blue-700 w-full">
                 <div class="inline-block text-white px-4 py-2 rounded-lg">
-                    <p class="text-sm font-medium">簡単2ステップ</p>
+                    <p class="text-m font-medium">簡単2ステップ</p>
                 </div>
                 <h2 class="text-3xl font-bold mt-4 text-white">- 完全無料登録 -</h2>
                 <p class="text-gray-300">ENTRY</p>
@@ -108,9 +186,12 @@
             </p>
 
             <div id="step1" class="step-content">
-                <div class="mb-6">
-                    <label for="00N5i00000INIB9" class="block text-m font-bold mb-2">お住まい<span class="text-red-500 font-bold ml-1">必須</span></label>
-                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                <div class="mb-6 relative">
+                    <label for="00N5i00000INIB9" class="select-label">
+                        お住まい<span class="required">必須</span>
+                    </label>
+                    <select id="00N5i00000INIB9" name="00N5i00000INIB9" required 
+                        class="custom-select">
                         <option value="" disabled selected>都道府県</option>
                         <option value="東京23区">東京23区</option>
                         <option value="東京都内">東京都内</option>
@@ -118,32 +199,49 @@
                         <option value="千葉県">千葉県</option>
                         <option value="埼玉県">埼玉県</option>
                     </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </div>
                 </div>
                 <div class="mb-6">
-                    <label class="block text-m font-bold mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
+                    <label class="block text-lg font-bold mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
                     <div class="flex space-x-4">
-                        <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color active" data-value="就業中">在職中</button>
-                        <button type="button" class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color" data-value="離職中">離職中</button>
+                        <button type="button" 
+                            class="employment-status-btn active flex-1 py-2 px-4 border border-gray-300 rounded-lg 
+                            focus:outline-none focus:ring-2 focus:ring-primary-color relative pl-10">
+                            在職中
+                        </button>
+                        <button type="button" 
+                            class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg 
+                            focus:outline-none focus:ring-2 focus:ring-primary-color">
+                            離職中
+                        </button>
                     </div>
                     <input type="hidden" id="00N5i00000INHtf" name="00N5i00000INHtf" value="就業中">
                 </div>
                 <div class="mb-6">
-                    <label for="00N5i00000INHtk" class="block text-m font-bold mb-2">業界経験<span class="text-red-500 ml-1">必須</span></label>
-                    <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="custom-select w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
-                        <option value="" disabled selected>業界経験を選択してください</option>
-                        <option value="あり">あり</option>
-                        <option value="なし">なし</option>
-                        <option value="１年">１年</option>
-                        <option value="２年">２年</option>
-                        <option value="３年">３年</option>
-                        <option value="４年">４年</option>
-                        <option value="５年">５年</option>
-                        <option value="６年">６年</option>
-                        <option value="７年">７年</option>
-                        <option value="８年">８年</option>
-                        <option value="９年">９年</option>
-                        <option value="１０年以上">１０年以上</option>
-                    </select>
+                    <label for="00N5i00000INHtk" class="select-label">
+                        業界経験<span class="required">必須</span>
+                    </label>
+                    <div class="custom-select-wrapper">
+                        <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="custom-select">
+                            <option value="" disabled selected>業界経験を選択してください</option>
+                            <option value="あり">あり</option>
+                            <option value="なし">なし</option>
+                            <option value="１年">１年</option>
+                            <option value="２年">２年</option>
+                            <option value="３年">３年</option>
+                            <option value="４年">４年</option>
+                            <option value="５年">５年</option>
+                            <option value="６年">６年</option>
+                            <option value="７年">７年</option>
+                            <option value="８年">８年</option>
+                            <option value="９年">９年</option>
+                            <option value="１０年以上">１０年以上</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="text-center mt-8">
                     <button type="button" id="nextStep" class="bg-gradient-to-r from-orange-400 to-orange-500 flex w-full items-center justify-between rounded-full px-0 py-3 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
