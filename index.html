@@ -18,11 +18,12 @@
             color: var(--text-color);
         }
         .form-container {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.6); /* 60%の透明度 */
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            min-height: 500px;
+            width: 346px;
+            height: 509px;
         }
         .step-indicator {
             width: 30px;
@@ -75,6 +76,14 @@
             transform: translateX(100%);
             opacity: 0;
         }
+        .slide-out-right {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .slide-in-left {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
         .custom-gradient-select {
             background-image: 
             linear-gradient(to bottom, 
@@ -97,8 +106,8 @@
         .employment-status-btn.active {
             background-image: 
             linear-gradient(to bottom, 
-                rgb(150, 218, 107) 0%,
-                rgb(136, 210, 94) 100%
+                rgb(121, 150, 225) 0%,
+                rgb(79, 109, 186) 100%
             );
             box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
         }
@@ -147,17 +156,36 @@
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 5px;
-            color: #333;
+            color: #202020;
         }
         .required {
             color: #ff4d4d;
             margin-left: 5px;
         }
+        .form-content {
+            background-color: rgba(255, 255, 255, 0.9); /* フォーム内容の背景 */
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        input::placeholder, select::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+        
+        /* 入力欄のスタイル調整 */
+        input[type="text"], input[type="number"], input[type="tel"], input[type="email"], select {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
     </style>
 </head>
-<body class="p-4">
-    <div id="form-container" class="form-container max-w-2xl mx-auto my-10 p-8">
-        <form id="entryForm" method="post" action="https://script.google.com/macros/s/AKfycbyDSkluozMp8-SYqrZUorKJpUKDro0x4bTkOkbJM8Gcrp3kkP4Ek8P9feFnTnpM6_C7/exec" class="space-y-6">
+<body class="p-0 tracking-wide">
+    <div id="form-container" class="form-container mx-auto my-10 p-4 relative">
+        <form id="entryForm" method="post" action="https://script.google.com/macros/s/AKfycbyDSkluozMp8-SYqrZUorKJpUKDro0x4bTkOkbJM8Gcrp3kkP4Ek8P9feFnTnpM6_C7/exec" class="space-y-4">
             <input type="hidden" name="oid" value="00D5i000007D96l">
             <input type="hidden" name="retURL" value="https://foods-labo.info/thanks/thanks_kanto/">
             <input type="hidden" id="00N5i00000INJMr" name="00N5i00000INJMr" value="/lp/">
@@ -167,42 +195,78 @@
             <input type="hidden" id="00N5i00000FudHy" name="00N5i00000FudHy" value="">
             <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
 
-            <div class="w-full text-center bg-gradient-to-b from-blue-500 to-blue-700 rounded-t-lg shadow-md p-6 mb-6 items-center">
-                <p class="text-white text-m font-medium bg-blue-500 bg-opacity-30 inline-block px-3 py-1 rounded-full mb-2">
-                    簡単2ステップ
+            <div class="w-full text-center  mb-2 items-center">
+                <p class="text-black text-m font-medium  inline-block rounded-full mb-2">
+                    ＼簡単15秒／
                 </p>
-                <h1 class="text-white text-3xl font-bold mb-1">- 完全無料登録 -</h1>
-                <p class="text-blue-100 text-lg">ENTRY</p>
+                <h1 class="text-gray-700 text-2xl font-bold "> ─ 完全無料登録 ─</h1>
             </div>
 
-            <div class="flex justify-center space-x-4 mb-8">
-                <div class="step-indicator active">1</div>
-                <div class="step-indicator">2</div>
-            </div>
-
-            <p class="text-center mb-8">
-                一般公開している企業から<br>
+            <p class="text-center font-bold text-gray-600">
                 <span class="border-b-2 text-orange-500">非公開求人</span>まで幅広くご紹介いたします！
             </p>
 
             <div id="step1" class="step-content">
-                <div class="mb-6">
+                <div class="mb-3">
                     <label for="00N5i00000INIB9" class="select-label">
-                        お住まい<span class="text-red-500 ml-1">必須</span>
+                        お住まい<span class="text-red-500 ml-1 text-base">必須</span>
                     </label>
                     <div class="custom-select-wrapper">
                         <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select">
                             <option value="" disabled selected>都道府県</option>
                             <option value="東京23区">東京23区</option>
-                            <option value="東京都内">東京都内</option>
-                            <option value="神奈川県">神奈川県</option>
-                            <option value="千葉県">千葉県</option>
+                            <option value="北海道">北海道</option>
+                            <option value="青森県">青森県</option>
+                            <option value="岩手県">岩手県</option>
+                            <option value="宮城県">宮城県</option>
+                            <option value="秋田県">秋田県</option>
+                            <option value="山形県">山形県</option>
+                            <option value="福島県">福島県</option>
+                            <option value="茨城県">茨城県</option>
+                            <option value="栃木県">栃木県</option>
+                            <option value="群馬県">群馬県</option>
                             <option value="埼玉県">埼玉県</option>
+                            <option value="千葉県">千葉県</option>
+                            <option value="東京都">東京都</option>
+                            <option value="神奈川県">神奈川県</option>
+                            <option value="新潟県">新潟県</option>
+                            <option value="富山県">富山県</option>
+                            <option value="石川県">石川県</option>
+                            <option value="福井県">福井県</option>
+                            <option value="山梨県">山梨県</option>
+                            <option value="長野県">長野県</option>
+                            <option value="岐阜県">岐阜県</option>
+                            <option value="静岡県">静岡県</option>
+                            <option value="愛知県">愛知県</option>
+                            <option value="三重県">三重県</option>
+                            <option value="滋賀県">滋賀県</option>
+                            <option value="京都府">京都府</option>
+                            <option value="大阪府">大阪府</option>
+                            <option value="兵庫県">兵庫県</option>
+                            <option value="奈良県">奈良県</option>
+                            <option value="和歌山県">和歌山県</option>
+                            <option value="鳥取県">鳥取県</option>
+                            <option value="島根県">島根県</option>
+                            <option value="岡山県">岡山県</option>
+                            <option value="広島県">広島県</option>
+                            <option value="山口県">山口県</option>
+                            <option value="徳島県">徳島県</option>
+                            <option value="香川県">香川県</option>
+                            <option value="愛媛県">愛媛県</option>
+                            <option value="高知県">高知県</option>
+                            <option value="福岡県">福岡県</option>
+                            <option value="佐賀県">佐賀県</option>
+                            <option value="長崎県">長崎県</option>
+                            <option value="熊本県">熊本県</option>
+                            <option value="大分県">大分県</option>
+                            <option value="宮崎県">宮崎県</option>
+                            <option value="鹿児島県">鹿児島県</option>
+                            <option value="沖縄県">沖縄県</option>
                         </select>
                     </div>
                 </div>
-                <div class="mb-6">
-                    <label class="block text-lg font-bold mb-2">就業状況<span class="text-red-500 ml-1">必須</span></label>
+                <div class="mb-3">
+                    <label class="block text-lg font-bold mb-2">就業状況<span class="text-red-500 ml-1 text-base">必須</span></label>
                     <div class="flex space-x-4">
                         <button type="button" 
                             class="employment-status-btn active flex-1 py-2 px-4 border border-gray-300 rounded-lg 
@@ -217,9 +281,9 @@
                     </div>
                     <input type="hidden" id="00N5i00000INHtf" name="00N5i00000INHtf" value="就業中">
                 </div>
-                <div class="mb-6">
+                <div class="mb-3">
                     <label for="00N5i00000INHtk" class="block text-lg font-bold mb-2">
-                        業界経験<span class="text-red-500 ml-1">必須</span>
+                        業界経験<span class="text-red-500 ml-1 text-base">必須</span>
                     </label>
                     <div class="custom-select-wrapper">
                         <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="custom-select">
@@ -227,21 +291,14 @@
                             <option value="あり">あり</option>
                             <option value="なし">なし</option>
                             <option value="１年">１年</option>
-                            <option value="２年">２年</option>
-                            <option value="３年">３年</option>
-                            <option value="４年">４年</option>
-                            <option value="５年">５年</option>
-                            <option value="６年">６年</option>
-                            <option value="７年">７年</option>
-                            <option value="８年">８年</option>
-                            <option value="９年">９年</option>
-                            <option value="１０年以上">１０年以上</option>
+                            <option value="2~4年">2~4年</option>
+                            <option value="5~9年">5年以上</option>
                         </select>
                     </div>
                 </div>
-                <div class="text-center mt-8">
+                <div class="text-center mt-">
                     <button type="button" id="nextStep" class="bg-gradient-to-r from-orange-400 to-orange-500 flex w-full items-center justify-between rounded-full px-0 py-3 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
-                        <span class="bg-white text-green-500 py-2 px-4 rounded-full mx-2">簡単2STEP</span>
+                        <span class="bg-white text-blue-600 font-bold py-2 px-4 tracking-wider rounded-full mx-2">簡単2STEP</span>
                         <span class="text-white text-l font-bold pr-4">次へ</span>
                         <span class="text-white text-l font-bold pr-4">＞</span>
                     </button>
@@ -249,37 +306,34 @@
             </div>
 
             <div id="step2" class="step-content hidden">
-                <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="grid grid-cols-2 gap-4 mb-2">
                     <div>
-                        <label for="last_name" class="block text-m font-bold mb-2">氏名(姓)<span class="text-red-500 ml-1">必須</span></label>
-                        <input type="text" id="last_name" name="last_name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                        <label for="last_name" class="block text-m font-bold mb-0">氏名(姓)<span class="text-red-500 ml-1 font-normal">必須</span></label>
+                        <input type="text" id="last_name" name="last_name" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="山田">
                     </div>
                     <div>
-                        <label for="first_name" class="block text-m font-bold mb-2">氏名(名)<span class="text-red-500 ml-1">必須</span></label>
-                        <input type="text" id="first_name" name="first_name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                        <label for="first_name" class="block text-m font-bold mb-0">氏名(名)<span class="text-red-500 ml-1 font-normal">必須</span></label>
+                        <input type="text" id="first_name" name="first_name" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="太郎">
                     </div>
                 </div>
-                <div class="mb-6">
-                    <label for="00N5i00000INHsm" class="block text-m font-bold mb-2">年齢<span class="text-red-500 ml-1">必須</span></label>
-                    <input type="number" id="00N5i00000INHsm" name="00N5i00000INHsm" required min="18" max="100" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                <div class="mb-2">
+                    <label for="00N5i00000INHsm" class="block text-m font-bold mb-0">年齢<span class="text-red-500 ml-1 font-normal">必須</span></label>
+                    <input type="number" id="00N5i00000INHsm" name="00N5i00000INHsm" required min="18" max="100" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="30">
                 </div>
-                <div class="mb-6">
-                    <label for="mobile" class="block text-m font-bold mb-2">電話番号<span class="text-red-500 ml-1">必須</span></label>
-                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                <div class="mb-2">
+                    <label for="mobile" class="block text-m font-bold mb-0">電話番号<span class="text-red-500 ml-1 font-normal">必須</span></label>
+                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="09012345678">
                 </div>
-                <div class="mb-6">
-                    <label for="email" class="block text-m font-bold mb-2">メールアドレス<span class="text-red-500 ml-1">必須</span></label>
-                    <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
+                <div class="mb-2">
+                    <label for="email" class="block text-m font-bold mb-0">メールアドレス<span class="text-red-500 ml-1 font-normal">必須</span></label>
+                    <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="example@email.com">
                 </div>
-                <div class="mb-6">
-                    <label for="00N5i00000INHsr" class="block text-m font-bold mb-2">LINEでのやり取りを希望（任意）</label>
-                    <input type="text" id="00N5i00000INHsr" name="00N5i00000INHsr" placeholder="LINE IDを入力してください" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color">
-                </div>
-                <div class="flex justify-between mt-8 space-x-3">
-                    <button type="button" id="prevStep" class="px-8 py-3 m-3 bg-green-400 text-white font-bold rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
+                
+                <div class="flex justify-between mt-4 space-x-3">
+                    <button type="button" id="prevStep" class="px-4 py-1 h-12 w-20 bg-green-400 text-white font-bold rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
                         戻る
                     </button>
-                    <button type="submit" class="next-btn px-8 py-3 w-full rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
+                    <button type="submit" class="next-btn px-4 py-1 flex-grow h-12 rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
                         無料エントリー！
                     </button>
                 </div>
@@ -297,24 +351,23 @@
             const employmentStatusBtns = document.querySelectorAll('.employment-status-btn');
             const employmentStatusInput = document.getElementById('00N5i00000INHtf');
             const stepIndicators = document.querySelectorAll('.step-indicator');
-    
+
             function showStep(stepToShow, stepToHide, direction) {
                 const slideOutClass = direction === 'next' ? 'slide-out-left' : 'slide-out-right';
                 const slideInClass = direction === 'next' ? 'slide-in-right' : 'slide-in-left';
-    
+
                 stepToHide.classList.add(slideOutClass);
                 stepToShow.classList.remove('hidden');
                 stepToShow.classList.add(slideInClass);
-    
+
                 // Force a reflow
                 stepToShow.offsetHeight;
-    
+
                 stepToShow.classList.remove(slideInClass);
-                
+                stepToHide.classList.remove(slideOutClass);
+
                 setTimeout(() => {
                     stepToHide.classList.add('hidden');
-                    stepToHide.classList.remove(slideOutClass);
-                    sendHeight();
                 }, 500);
             }
     
@@ -351,18 +404,14 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (validateStep2()) {
-                    // フォームの action URL を確認
                     const scriptURL = 'https://script.google.com/macros/s/AKfycbyDSkluozMp8-SYqrZUorKJpUKDro0x4bTkOkbJM8Gcrp3kkP4Ek8P9feFnTnpM6_C7/exec';
                     
                     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                         .then(response => response.text())
                         .then(data => {
                             console.log('Success:', data);
-                            alert('エントリーが完了しました！');
-                            form.reset();
-                            showStep(step1, step2, 'prev');
-                            updateStepIndicator(1);
-                            resetEmploymentStatus();
+                            // フォーム送信後、指定されたURLに遷移
+                            window.location.href = 'https://preview.studio.site/live/4Ra4K9mVqD/thanks_contact';
                         })
                         .catch(error => {
                             console.error('Error:', error);
