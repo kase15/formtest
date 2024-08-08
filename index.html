@@ -8,7 +8,7 @@
     <style>
         :root {
             --primary-color: #ff9800;
-            --secondary-color: #79e536;
+            --secondary-color: #4DB6AC;
             --background-color: #f5f5f5;
             --text-color: #333333;
         }
@@ -64,6 +64,7 @@
         .step-content {
             transition: all 1.0s ease;
             width: 100%;
+            height: 360px;
         }
         .step-content.hidden {
             display: none;
@@ -111,13 +112,7 @@
             );
             box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
         }
-        .employment-status-btn.active::before {
-            content: "✓";
-            position: absolute;
-            left: 10px;
-            color: white;
-            font-weight: bold;
-        }
+
             /* ... 既存のスタイル ... */
     
             .custom-select-wrapper {
@@ -269,15 +264,19 @@
                     <label class="block text-lg font-bold mb-2">就業状況<span class="text-red-500 ml-1 text-base">必須</span></label>
                     <div class="flex space-x-4">
                         <button type="button" 
-                            class="employment-status-btn active flex-1 py-2 px-4 border border-gray-300 rounded-lg 
-                            focus:outline-none focus:ring-2 focus:ring-primary-color relative pl-10">
-                            在職中
-                        </button>
-                        <button type="button" 
-                            class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg 
-                            focus:outline-none focus:ring-2 focus:ring-primary-color">
-                            離職中
-                        </button>
+                        class="employment-status-btn active flex-1 py-2 px-4 border border-gray-300 rounded-lg 
+                        focus:outline-none focus:ring-2 focus:ring-primary-color
+                        relative flex items-center justify-center group">
+                        <span class="absolute left-3 font-bold opacity-0 group-[.active]:opacity-100">✓</span>
+                        <span class="group-[.active]:ml-4">在職中</span>
+                    </button>
+                    <button type="button" 
+                        class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg 
+                        focus:outline-none focus:ring-2 focus:ring-primary-color
+                        relative flex items-center justify-center group">
+                        <span class="absolute left-3 font-bold opacity-0 group-[.active]:opacity-100">✓</span>
+                        <span class="group-[.active]:ml-4">離職中</span>
+                    </button>
                     </div>
                     <input type="hidden" id="00N5i00000INHtf" name="00N5i00000INHtf" value="就業中">
                 </div>
@@ -322,11 +321,11 @@
                 </div>
                 <div class="mb-2">
                     <label for="mobile" class="block text-m font-bold mb-0">電話番号<span class="text-red-500 ml-1 font-normal">必須</span></label>
-                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="09012345678">
+                    <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10,11}" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="09000000000">
                 </div>
                 <div class="mb-2">
                     <label for="email" class="block text-m font-bold mb-0">メールアドレス<span class="text-red-500 ml-1 font-normal">必須</span></label>
-                    <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="example@email.com">
+                    <input type="email" id="email" name="email" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-color focus:border-primary-color" placeholder="example@gourmevision.com">
                 </div>
                 
                 <div class="flex justify-between mt-4 space-x-3">
