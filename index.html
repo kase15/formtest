@@ -403,7 +403,7 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (validateStep2()) {
-                    const scriptURL = `https://script.google.com/a/macros/ambientnavi.com/s/AKfycbz6IWbo_rHSLpRKhanz276v7gtGv5TKhRcbFnkDgmmk3GK3YvZl5Maf8mwmfLlP6iHL/exec';
+                    const scriptURL = 'https://script.google.com/a/macros/ambientnavi.com/s/AKfycbz6IWbo_rHSLpRKhanz276v7gtGv5TKhRcbFnkDgmmk3GK3YvZl5Maf8mwmfLlP6iHL/exec';
                     
                     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                         .then(response => response.text())
