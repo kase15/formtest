@@ -409,8 +409,10 @@
                         .then(response => response.text())
                         .then(data => {
                             console.log('Success:', data);
+                            console.log('Attempting to send message to parent');
                                 // 親ウィンドウにメッセージを送信
-                            window.parent.postMessage({type: 'formSubmitted'}, 'https://preview.studio.site/live/4Ra4K9mVqD/1');
+                            window.parent.postMessage({type: 'formSubmitted'}, '*');
+                            console.log('Message sent to parent');
                         })
                         .catch(error => {
                             console.error('Error:', error);
