@@ -409,8 +409,8 @@
                         .then(response => response.text())
                         .then(data => {
                             console.log('Success:', data);
-                            // フォーム送信後、指定されたURLに遷移
-                            window.location.href = 'https://gourmevision.com/thanks_contact';
+                                // 親ウィンドウにメッセージを送信
+                            window.parent.postMessage({type: 'formSubmitted'}, '*');
                         })
                         .catch(error => {
                             console.error('Error:', error);
