@@ -181,7 +181,7 @@
 </head>
 <body class="p-0 tracking-wide">
     <div id="form-container" class="form-container mx-auto p-4 relative">
-        <form id="entryForm" method="post" action="https://script.google.com/macros/s/AKfycbw4t5JS6vJAcGl_Epu2p0CurPCtJWAqZsNhAO7_nTUZ7OKCvenX9tMA0URQ3Ehn5lK2/exec" class="space-y-4">
+        <form id="entryForm" method="post" action="https://script.google.com/macros/s/AKfycbxLiZoUY-rlk8iPb_iOPtSI4hcSrJP6EcULvQGu66F0hofJROrup30GWKNpANoWQbbpZw/exec" class="space-y-4">
             <input type="hidden" name="oid" value="00D5i000007D96l">
             <input type="hidden" name="retURL" value="https://foods-labo.info/thanks/thanks_kanto/">
             <input type="hidden" id="00N5i00000INJMr" name="00N5i00000INJMr" value="/lp/">
@@ -404,7 +404,7 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (validateStep2()) {
-                    const scriptURL = 'https://script.google.com/macros/s/AKfycbw4t5JS6vJAcGl_Epu2p0CurPCtJWAqZsNhAO7_nTUZ7OKCvenX9tMA0URQ3Ehn5lK2/exec';
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbxLiZoUY-rlk8iPb_iOPtSI4hcSrJP6EcULvQGu66F0hofJROrup30GWKNpANoWQbbpZw/exec';
                     
                     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                         .then(response => response.text())
