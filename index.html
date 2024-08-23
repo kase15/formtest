@@ -18,13 +18,12 @@
             color: var(--text-color);
         }
         .form-container {
-            background-color: rgba(255, 255, 255, 0.6); /* 60%の透明度 */
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             width: 346px;
             height: 526px;
-            overflow: hidden;
         }
         .step-indicator {
             width: 30px;
@@ -95,8 +94,8 @@
                 rgba(240,240,240,1) 80%,
                 rgba(255,255,255,1) 100%
             );
-         }
-            .employment-status-btn {
+        }
+        .employment-status-btn {
             background-image: 
             linear-gradient(to bottom, 
                 rgba(255,255,255,0.8) 0%,
@@ -113,10 +112,7 @@
             );
             box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
         }
-
-            /* ... 既存のスタイル ... */
-    
-            .custom-select-wrapper {
+        .custom-select-wrapper {
             position: relative;
             width: 100%;
         }
@@ -159,23 +155,24 @@
             margin-left: 5px;
         }
         .form-content {
-            background-color: rgba(255, 255, 255, 0.9); /* フォーム内容の背景 */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 8px;
         }
-        
         input::placeholder, select::placeholder {
             color: #999;
             font-style: italic;
         }
-        
-        /* 入力欄のスタイル調整 */
         input[type="text"], input[type="number"], input[type="tel"], input[type="email"], select {
             background-color: white;
             border: 1px solid #ddd;
             padding: 8px 12px;
             border-radius: 4px;
             font-size: 14px;
+        }
+        #submitBtn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -191,11 +188,11 @@
             <input type="hidden" id="00N5i00000FudHy" name="00N5i00000FudHy" value="">
             <input type="hidden" id="00N5i00000FudHz" name="00N5i00000FudHz" value="">
 
-            <div class="w-full text-center  mb-2 items-center">
-                <p class="text-black text-m font-medium  inline-block rounded-full mb-2">
+            <div class="w-full text-center mb-2 items-center">
+                <p class="text-black text-m font-medium inline-block rounded-full mb-2">
                     ＼簡単15秒／
                 </p>
-                <h1 class="text-gray-700 text-2xl font-bold "> ─ 完全無料登録 ─</h1>
+                <h1 class="text-gray-700 text-2xl font-bold"> ─ 完全無料登録 ─</h1>
             </div>
 
             <p class="text-center font-bold text-gray-600">
@@ -209,7 +206,7 @@
                     </label>
                     <div class="custom-select-wrapper">
                         <select id="00N5i00000INIB9" name="00N5i00000INIB9" required class="custom-select">
-                            <option value="" disabled selected >都道府県</option>
+                            <option value="" disabled selected>都道府県</option>
                             <option value="東京23区">東京23区</option>
                             <option value="北海道">北海道</option>
                             <option value="青森県">青森県</option>
@@ -267,14 +264,14 @@
                         <button type="button" 
                         class="employment-status-btn active flex-1 py-2 px-4 border border-gray-300 rounded-lg 
                         focus:outline-none focus:ring-2 focus:ring-primary-color
-                        relative flex items-center justify-center group">
+                        relative flex items-center justify-center group" data-value="就業中">
                         <span class="absolute left-3 font-bold opacity-0 group-[.active]:opacity-100">✓</span>
                         <span class="group-[.active]:ml-4">在職中</span>
                     </button>
                     <button type="button" 
                         class="employment-status-btn flex-1 py-2 px-4 border border-gray-300 rounded-lg 
                         focus:outline-none focus:ring-2 focus:ring-primary-color
-                        relative flex items-center justify-center group">
+                        relative flex items-center justify-center group" data-value="離職中">
                         <span class="absolute left-3 font-bold opacity-0 group-[.active]:opacity-100">✓</span>
                         <span class="group-[.active]:ml-4">離職中</span>
                     </button>
@@ -283,7 +280,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="00N5i00000INHtk" class="block text-lg font-bold mb-2">
-                        業界経験<span class="text-red-500  ml-2 text-sm font-normal">必須</span>
+                        業界経験<span class="text-red-500 ml-2 text-sm font-normal">必須</span>
                     </label>
                     <div class="custom-select-wrapper">
                         <select id="00N5i00000INHtk" name="00N5i00000INHtk" required class="custom-select">
@@ -296,7 +293,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="text-center mt-">
+                <div class="text-center mt-4">
                     <button type="button" id="nextStep" class="bg-gradient-to-r from-orange-400 to-orange-500 flex w-full items-center justify-between rounded-full px-0 py-3 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
                         <span class="bg-white text-blue-600 font-bold py-2 px-4 tracking-wider rounded-full mx-2">簡単2STEP</span>
                         <span class="text-white text-l font-bold pr-4">次へ</span>
@@ -333,8 +330,12 @@
                     <button type="button" id="prevStep" class="px-4 py-1 h-12 w-20 bg-green-400 text-white font-bold rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
                         戻る
                     </button>
-                    <button type="submit" class="next-btn px-4 py-1 flex-grow h-12 rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50">
-                        無料エントリー！
+                    <button type="submit" id="submitBtn" class="next-btn px-4 py-1 flex-grow h-12 rounded-full text-white text-lg font-bold transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary-color focus:ring-opacity-50 flex items-center justify-center">
+                        <span id="submitBtnText">無料エントリー！</span>
+                        <svg id="submitSpinner" class="animate-spin h-5 w-5 text-white ml-3 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -404,20 +405,40 @@
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 if (validateStep2()) {
+                    const submitBtn = document.getElementById('submitBtn');
+                    const submitBtnText = document.getElementById('submitBtnText');
+                    const submitSpinner = document.getElementById('submitSpinner');
+                    
+                    // ボタンを無効化し、スピナーを表示
+                    submitBtn.disabled = true;
+                    submitBtnText.textContent = '送信中...';
+                    submitSpinner.classList.remove('hidden');
+
                     const scriptURL = 'https://script.google.com/macros/s/AKfycbxmFE1VcEh4z7Y-M8PoRVOCqF7q7kO4YV7JaJcwKkJfL_PrxrhLIUhJ7ZWag4NJUoDnjQ/exec';
                     
                     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                        .then(response => response.text())
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
                         .then(data => {
                             console.log('Success:', data);
                             console.log('Attempting to send message to parent');
-                                // 親ウィンドウにメッセージを送信
                             window.parent.postMessage({type: 'formSubmitted'}, '*');
                             console.log('Message sent to parent');
+                            // ここで成功メッセージを表示するか、リダイレクトを行うことができます
                         })
                         .catch(error => {
                             console.error('Error:', error);
                             alert('エントリーの送信中にエラーが発生しました。もう一度お試しください。');
+                        })
+                        .finally(() => {
+                            // 送信完了後、ボタンを元の状態に戻す
+                            submitBtn.disabled = false;
+                            submitBtnText.textContent = '無料エントリー！';
+                            submitSpinner.classList.add('hidden');
                         });
                 }
             });
@@ -480,6 +501,6 @@
                 step.addEventListener('transitionend', sendHeight);
             });
         });
-        </script>
-    </body>
-    </html>
+    </script>
+</body>
+</html>
